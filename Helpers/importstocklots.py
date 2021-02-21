@@ -3,7 +3,7 @@ This class is for importing the stock lots
 For now this will be from a text file
 FIn the future I would like to import from excel
 '''
-from Models.StockLot import StockLot
+from Models.stocklot import StockLot
 
 
 def import_stock_lots(file_name):
