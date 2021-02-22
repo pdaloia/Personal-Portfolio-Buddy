@@ -8,7 +8,8 @@ def main():
 
     file_name = input("Please enter the file name to import the stock lots from: ")
     stock_lots = import_stock_lots(file_name)
-    print(stock_lots)
+    for lot in stock_lots:
+        print(str(lot))
 
 
 if __name__ == '__main__':

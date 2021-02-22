@@ -20,3 +20,6 @@ class StockLot:
         self.ticker = ticker
         self.quantity = float(quantity)
         self.price_per_stock = float(price_per_stock)
+
+    def __str__(self):
+        return self.ticker + ": " + self.date_of_action + " " + str(self.action_type.name) + " " + str(self.quantity)
