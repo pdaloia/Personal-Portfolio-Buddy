@@ -1,5 +1,7 @@
 # This is the main py script for Personal Portfolio Buddy
+import datetime
 from Helpers.importstocklots import import_stock_lots
+from Helpers.portfoliohistorybuilder import build_portfolio_history
 
 
 def main():
@@ -10,6 +12,9 @@ def main():
     stock_lots = import_stock_lots(file_name)
     for lot in stock_lots:
         print(str(lot))
+
+    portfolio = build_portfolio_history(stock_lots[0].date_of_action, datetime.date.today())
+    print(portfolio)
 
 
 if __name__ == '__main__':
