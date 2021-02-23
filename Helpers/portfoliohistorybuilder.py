@@ -53,5 +53,10 @@ def create_daily_portfolio(actions, previous_day_portfolio):
     daily_portfolio = previous_day_portfolio.copy()
 
     # do the modifications here
+    for action in actions:
+        if action.ticker in daily_portfolio:
+            daily_portfolio[action.ticker] += action.quantity
+        else:
+            daily_portfolio[action.ticker] = action.quantity
 
     return daily_portfolio
