@@ -15,9 +15,6 @@ def main():
     portfolio = build_portfolio_history(stock_lots[0].date_of_action, datetime.date.today(), stock_lots)
     print(portfolio)
 
-    nio_hist = StockService.get_ticker("NIO", "2020-06-25")
-    print(nio_hist)
-
 
 if __name__ == '__main__':
     main()

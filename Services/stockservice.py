@@ -5,7 +5,7 @@ import datetime
 class StockService:
 
     @staticmethod
-    def get_ticker(ticker, date):
+    def get_ticker_close(ticker, date):
 
         ticker = yf.Ticker(ticker)
 
@@ -14,4 +14,4 @@ class StockService:
         end_date = start_date + time_delta
 
         hist = ticker.history(start=start_date, end=end_date)
-        return hist
+        return hist["Close"][0]
