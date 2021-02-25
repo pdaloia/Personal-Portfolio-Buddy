@@ -27,10 +27,10 @@ def build_portfolio_history(start_date, end_date, stock_lots):
 
         # Build a list of actions taken place on the current day
         current_day_actions = []
-        while stock_lots and str(start_date) == stock_lots[0].date_of_action:
+        while stock_lots and str(start_date) == stock_lots[-1].date_of_action:
 
             # if there is a hit, pop the first element and add it to the current day's actions
-            current_day_actions.append(stock_lots.pop(0))
+            current_day_actions.append(stock_lots.pop())
 
         # Build the current days portfolio using the previous days portfolio, then set previous day after we are done
         daily_portfolio = create_daily_portfolio(current_day_actions, previous_days_portfolio)

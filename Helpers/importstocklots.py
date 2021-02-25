@@ -25,7 +25,7 @@ def import_stock_lots(file_name):
 
     # Sort the list of StockLot objects with its custom compare function
     # Since python uses timsort, this will take O(n log n) time
-    stock_lots.sort(key=lambda x: x.date_of_action)
+    stock_lots.sort(key=lambda x: x.date_of_action, reverse=True)
 
     # close the file and return the list of stock lots
     file.close()

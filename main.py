@@ -12,7 +12,7 @@ def main():
     file_name = input("Please enter the file name to import the stock lots from: ")
     stock_lots = import_stock_lots(file_name)
 
-    portfolio = build_portfolio_history(stock_lots[0].date_of_action, datetime.date.today(), stock_lots)
+    portfolio = build_portfolio_history(stock_lots[-1].date_of_action, datetime.date.today(), stock_lots)
     for key, value in portfolio.items():
         print(key + " -> " + str(value[1]))
 
