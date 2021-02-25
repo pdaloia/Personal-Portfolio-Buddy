@@ -21,6 +21,10 @@ def build_portfolio_history(start_date, end_date, stock_lots):
     # iterate over all days in the range passed to this function
     while start_date <= end_date:
 
+        if start_date.weekday() >= 5:
+            start_date += time_delta
+            continue
+
         # Build a list of actions taken place on the current day
         current_day_actions = []
         while stock_lots and str(start_date) == stock_lots[0].date_of_action:
