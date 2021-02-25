@@ -13,7 +13,8 @@ def main():
     stock_lots = import_stock_lots(file_name)
 
     portfolio = build_portfolio_history(stock_lots[0].date_of_action, datetime.date.today(), stock_lots)
-    print(portfolio)
+    for key, value in portfolio.items():
+        print(key + " -> " + str(value[1]))
 
 
 if __name__ == '__main__':
