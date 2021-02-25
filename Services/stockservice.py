@@ -18,4 +18,8 @@ class StockService:
         end_date = start_date + time_delta
 
         hist = ticker.history(start=start_date, end=end_date)
-        return hist["Close"][0]
+
+        try:
+            return hist["Close"][0]
+        except IndexError:
+            return 0
