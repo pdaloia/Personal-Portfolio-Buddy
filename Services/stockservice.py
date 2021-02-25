@@ -9,7 +9,11 @@ class StockService:
 
         ticker = yf.Ticker(ticker)
 
-        start_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        if isinstance(date, str):
+            start_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        else:
+            start_date = date
+
         time_delta = datetime.timedelta(days=1)
         end_date = start_date + time_delta
 

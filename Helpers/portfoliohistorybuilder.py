@@ -7,6 +7,9 @@ import datetime
 # Data Structure returned: Dict
 # Key: Date
 # Value: TBD
+from Services.stockservice import StockService
+
+
 def build_portfolio_history(start_date, end_date, stock_lots):
 
     start_date = datetime.datetime.strptime(start_date, '%Y-%m-%d').date()
@@ -26,8 +29,10 @@ def build_portfolio_history(start_date, end_date, stock_lots):
             current_day_actions.append(stock_lots.pop(0))
 
         # Build the current days portfolio using the previous days portfolio, then set previous day after we are done
-        portfolio[str(start_date)] = create_daily_portfolio(current_day_actions, previous_days_portfolio)
-        previous_days_portfolio = portfolio[str(start_date)]
+        daily_portfolio = create_daily_portfolio(current_day_actions, previous_days_portfolio)
+        daily_portfolio_close_value = get_daily_close_value(daily_portfolio, start_date)
+        portfolio[str(start_date)] = (daily_portfolio, daily_portfolio_close_value)
+        previous_days_portfolio = portfolio[str(start_date)][0]
 
         start_date += time_delta
 
@@ -50,3 +55,18 @@ def create_daily_portfolio(actions, previous_day_portfolio):
             daily_portfolio[action.ticker] = action.quantity
 
     return daily_portfolio
+
+
+# This method takes a dict of tickers:quantities and gets the daily value at close
+def get_daily_close_value(ticker_quantity_dict, date):
+
+    daily_value = 0
+
+    for key, value in ticker_quantity_dict.items():
+        ticker = key
+        ticker_quantity = value
+        ticker_close = StockService.get_ticker_close(ticker, date)
+        ticker_total_value = ticker_close * ticker_quantity
+        daily_value += ticker_total_value
+
+    return daily_value
